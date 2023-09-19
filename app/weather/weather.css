@@ -1,0 +1,27 @@
+@media (max-width: 480px) {
+  .w-report {
+    width: 100%;
+    height: 80%;
+    margin: 10px;
+  }
+  .w-report h1 {
+    font-size: 3rem;
+  }
+  .w-display {
+    height: 60%;
+    flex-direction: row-reverse;
+  }
+  .weather-input {
+    height: 40%;
+    align-items: center;
+  }
+  .weather-input input {
+    width: 70%;
+  }
+  .w-condition {
+    justify-content: center;
+  }
+  .w-condition h2 {
+    font-size: 1.7rem;
+  }
+}
