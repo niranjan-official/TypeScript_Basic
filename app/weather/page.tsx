@@ -23,7 +23,7 @@ const Weather = () => {
         if(location){
 
             
-            const apiUrl: string = `http://api.weatherapi.com/v1/current.json?key=6bdd917b343a497287265310231709&q=${location}&aqi=yes`;
+            const apiUrl: string = `https://api.weatherapi.com/v1/current.json?key=6bdd917b343a497287265310231709&q=${location}&aqi=yes`;
             
         fetch(apiUrl)
             .then((response) => response.json())
@@ -53,7 +53,7 @@ const Weather = () => {
                             <div className='w-1/2 h-full flex flex-col w-condition'>
                                 <div className='flex h-1/4 mt-2 items-center'>
                                     <h2 className='text-3xl'>{weather.condition}</h2>
-                                    {weather.icon ? <Image src={"http:" + weather.icon} alt='weather' width="100" height="100" /> : null}
+                                    {weather.icon ? <Image src={"https:" + weather.icon} alt='weather' width="100" height="100" /> : null}
                                 </div>
                                 <div className='w-1/2 h-auto pl-4 '>
                                     <h1 className='text-6xl mt-3'>{weather.temp}°</h1>
