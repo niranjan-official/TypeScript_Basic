@@ -1,13 +1,13 @@
 'use client'
 
-import { useRouter } from 'next/router'
+
 import React, { FormEvent } from 'react'
 import { useState } from 'react'
 
 function Login() {
 
   const [name, setName] = useState<string>('')
-  const [password, setPassword] = useState<string | number>()
+  const [password, setPassword] = useState<string | number>('')
   const [login, setLogin] = useState<boolean>(false)
 
   const username: string = 'providence'

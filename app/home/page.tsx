@@ -12,19 +12,21 @@ import Image, { StaticImageData } from 'next/image'
 interface Link {
     name: string,
     href: string,
-    src: StaticImageData
+    src: StaticImageData,
+    key: number
 }
 
 const Main = () => {
 
-    const links: Link[] = [{ name: 'Login', href: '/login', src: login }, { name: 'Calculator', href: '/calculator', src: calculator }, { name: 'Weather', href: '/weather', src: weather }, { name: 'Clock', href: '/clock', src: clock }]
+    const links: Link[] = [{ name: 'Login', href: '/login', src: login, key:1 }, { name: 'Calculator', href: '/calculator', src: calculator, key:2 }, { name: 'Weather', href: '/weather', src: weather, key:3 }, { name: 'Clock', href: '/clock', src: clock,
+key:4 }]
 
     return (
         <div className='w-full h-screen p-4 flex home'>
             <div className='w-full h-full flex flex-wrap card'>
                 {
                     links.map((link) => (
-                        <div className="w-1/2 h-1/2 card-inner p-4 flex justify-center items-center">
+                        <div key={link.key} className="w-1/2 h-1/2 card-inner p-4 flex justify-center items-center">
                             <div className='w-3/5 h-full m-2 shadow-md rounded p-5 flex flex-col text-center card-box'>
                                 <Link href={link.href}><Image className='shadow-md' src={link.src} width="600" height="400" alt={link.name} /></Link>
                                 <div className='h-full flex items-center justify-center'><Link href={link.href}><h3 className='m-2 font-serif text-xl'>{link.name}</h3></Link></div>

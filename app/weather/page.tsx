@@ -20,9 +20,11 @@ const Weather = () => {
     const [weather, setWeather] = useState<Weather>({ time: new Date(), condition: '', icon: '', temp:0, region: '', humid: 0, wind: 0 })
 
     useEffect(() => {
+        if(location){
 
-        const apiUrl: string = `http://api.weatherapi.com/v1/current.json?key=6bdd917b343a497287265310231709&q=${location}&aqi=yes`;
-
+            
+            const apiUrl: string = `http://api.weatherapi.com/v1/current.json?key=6bdd917b343a497287265310231709&q=${location}&aqi=yes`;
+            
         fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
@@ -33,6 +35,7 @@ const Weather = () => {
             .catch((error) => {
                 console.error('Error fetching weather data:', error);
             });
+        }
     }, [location]);
 
     return (

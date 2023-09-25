@@ -26,7 +26,7 @@ function Calculator() {
     return (
         <div className='w-full h-screen flex justify-center items-center'>
             <div className=' calculator w-1/3 h-3/4 shadow-2xl shadow-slate-950 rounded-xl flex flex-col items-center p-6'>
-                <input type="text" value={data} placeholder='TypeScript Calculator ' className='w-full h-24 p-2 text-4xl shadow-inner shadow-black bg-slate-100 focus:outline-none text-right' />
+                <input type="text" defaultValue={data} placeholder='TypeScript Calculator ' className='w-full h-24 p-2 text-4xl shadow-inner shadow-black bg-slate-100 focus:outline-none text-right' />
                 <div className='h-full w-full mt-4 flex flex-col'>
                     <div className='flex h-3/4'>
                         <div className='h-full w-3/4 mr-2 flex flex-wrap justify-center items-center'>
