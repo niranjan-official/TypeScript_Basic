@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from 'next/router'
 import React, { FormEvent } from 'react'
 import { useState } from 'react'
 
@@ -15,6 +16,7 @@ function Login() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (name === username && password == pass) {
+
       setLogin(true)
     }
     else {

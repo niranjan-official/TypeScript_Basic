@@ -1,25 +1,19 @@
-.home button {
-  border-radius: 0.25rem;
-  font-family: "Times New Roman", Times, serif;
-  height: 5rem;
-  width: 15rem;
-  font-size: 2rem;
-  font-weight: bolder;
-  margin: 2rem;
-  background-color: #dadada;
-}
-.home button:hover {
-  background-color: #ccc9c9;
-}
-.home h1 {
-  font-family: "Courier New", Courier, monospace;
-  font-weight: bold;
-}
-@media (max-width: 480px) {
-  .home h1 {
-    font-size: 1.7rem;
+@media(max-width:480px){
+  .home{
+    height: max-content;
   }
-  .inner-home {
-    align-items: center;
+  .card{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .card-inner{
+    width: 100%;
+    padding: 1rem;
+  }
+  .card h3{
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .card-box{
+    padding-bottom: 2px;
   }
 }

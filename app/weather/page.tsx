@@ -1,19 +1,23 @@
 'use client'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState, Fragment } from 'react'
 import './weather.css'
 import Image from 'next/image'
+
+interface Weather{
+    time: Date,
+    condition: string,
+    icon: string,
+    temp: number,
+    region: string,
+    humid: number,
+    wind: number
+}
 
 const Weather = () => {
 
     const [place, setPlace] = useState<string>('')
     const [location, setLocation] = useState<string>('')
-    const [time, setTime] = useState<string>('')
-    const [condition, setCondition] = useState<string>('')
-    const [icon, setIcon] = useState<string>('')
-    const [temp, setTemp] = useState<string>('')
-    const [region, setRegion] = useState<string>('')
-    const [humid, setHumid] = useState<string>('')
-    const [wind, setWind] = useState<string>('')
+    const [weather, setWeather] = useState<Weather>({ time: new Date(), condition: '', icon: '', temp:0, region: '', humid: 0, wind: 0 })
 
     useEffect(() => {
 
@@ -23,14 +27,8 @@ const Weather = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
-
-                setTime(data.location.localtime)
-                setCondition(data.current.condition.text)
-                setIcon(data.current.condition.icon)
-                setTemp(data.current.temp_c)
-                setRegion(data.location.region)
-                setHumid(data.current.humidity)
-                setWind(data.current.wind_kph)
+                const newWeather:Weather = { time: data.location.localtime, condition: data.current.condition.text, icon: data.current.condition.icon, temp: data.current.temp_c, region: data.location.region, humid: data.current.humidity, wind: data.current.wind_kph }
+                setWeather(newWeather);
             })
             .catch((error) => {
                 console.error('Error fetching weather data:', error);
@@ -41,22 +39,24 @@ const Weather = () => {
         <div className='w-full h-screen flex justify-center items-center'>
             <div className='w-1/2 h-3/4 shadow-2xl p-4 flex flex-col w-report'>
                 <div className='h-1/2 w-full bg-slate-300 shadow-inner shadow-black p-4 flex font-serif w-display'>
-                    <div className='w-1/2 h-full flex flex-col'>
-                        <h2 className='m-2 mb-0 text-2xl'>{time}</h2>
-                        <h2 className='ml-3'>{region}</h2>
-                        {humid && <h2 className='ml-5 mt-3 text-xl'>Humidity: {humid}%</h2>}
-                        {wind && <h2 className='ml-5 text-xl mt-1'>Wind: {wind}km/h</h2>}
-                    </div>
-                    <div className='w-1/2 h-full flex flex-col w-condition'>
-                        <div className='flex h-1/4 mt-2 items-center'>
-                            <h2 className='text-3xl'>{condition}</h2>
-                            {/* <img src={"http:"+icon} alt="" /> */}
-                            {icon && <Image src={"http:"+icon} alt='weather' width="130" height="130" />}
-                        </div>
-                        <div className='w-1/2 h-auto pl-4'>
-                            {temp ? <h1 className='text-6xl mt-3'>{temp}°</h1> : null}
-                        </div>
-                    </div>
+                    {location &&
+                        <Fragment>
+                            <div className='w-1/2 h-full flex flex-col'>
+                                <h2 className='m-2 mb-0 text-2xl'>{weather.time.toLocaleString()}</h2>
+                                <h2 className='ml-3'>{weather.region}</h2>
+                                <h2 className='ml-5 mt-3 text-xl'>Humidity: {weather.humid}%</h2>
+                                <h2 className='ml-5 text-xl mt-1'>Wind: {weather.wind}km/h</h2>
+                            </div>
+                            <div className='w-1/2 h-full flex flex-col w-condition'>
+                                <div className='flex h-1/4 mt-2 items-center'>
+                                    <h2 className='text-3xl'>{weather.condition}</h2>
+                                    {weather.icon ? <Image src={"http:" + weather.icon} alt='weather' width="100" height="100" /> : null}
+                                </div>
+                                <div className='w-1/2 h-auto pl-4 '>
+                                    <h1 className='text-6xl mt-3'>{weather.temp}°</h1>
+                                </div>
+                            </div>
+                        </Fragment>}
                 </div>
                 <div className='h-1/2 w-full flex flex-col weather-input'>
                     <h1 className='font-serif'>{location ? location : "Enter Place"}</h1>

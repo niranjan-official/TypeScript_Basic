@@ -1,0 +1,38 @@
+.clock{
+    background: url('../../public/clock1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: fixed;
+}
+.hour, .minute, .second {
+    position: relative;
+    width: 50%;
+    height: 2px;
+    top: 50%;
+    transform-origin: 100%;
+    transform: translateY(-50%);
+    background: #333;
+}
+
+.minute {
+    height: 1px;
+    background: #666;
+}
+
+.second {
+    height: 1px;
+    background: red;
+}
+@media(max-width:480px){
+   .cl{
+    padding: 10px;
+   } 
+   .clock{
+    width: 20rem;
+    height: 20rem;
+   }
+   .cl h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+   }
+}
